@@ -1,14 +1,7 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
+pub fn fahrenheit_to_celsius(f: f64) -> f64 {
+    f - 32 / (9 as f64/5 as f64)
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+pub fn celsius_to_fahrenheit(c: f64) -> f64 {
+    c * (9 as f64/5 as f64) + 32
 }
