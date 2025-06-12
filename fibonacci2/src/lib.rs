@@ -1,5 +1,5 @@
 pub fn fibonacci(n: u32) -> u32 {
-    if n == 1 || n == 2 {
+    if n <= 2 {
         return 1
     }
     

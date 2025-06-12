@@ -3,7 +3,7 @@ use fibonacci2::*;
 fn main() {
     println!(
         "The element in the position {} in fibonacci series is {}",
-        2,
+        0,
         fibonacci(2)
     );
     println!(
