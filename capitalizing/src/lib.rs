@@ -1,4 +1,7 @@
 pub fn capitalize_first(input: &str) -> String {
+    if input.is_empty() {
+        return "".to_string()
+    }
     input[0..1].to_ascii_uppercase() + &input[1..]
 }
 
