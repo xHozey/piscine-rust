@@ -12,7 +12,7 @@ pub fn title_case(input: &str) -> String {
         } else {
             res.push(c.to_ascii_lowercase());
         }
-        if c == ' ' {
+        if c.is_whitespace() {
             space = true
         }
     }
