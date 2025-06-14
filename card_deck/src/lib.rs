@@ -47,7 +47,7 @@ impl Rank {
         }
     }
 }
-#[derive(Debug)]
+#[derive(PartialEq, Eq, Debug)]
 pub struct Card {
     pub suit: Suit,
     pub rank: Rank,
