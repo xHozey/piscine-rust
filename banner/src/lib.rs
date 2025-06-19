@@ -29,9 +29,14 @@ impl FlagsHandler {
     }
 
     pub fn exec_func(&self, input: &str, argv: &[&str]) -> Result<String, String> {
-        match  self.flags.get(input).unwrap()(argv[0], argv[1]) {
-            Ok(res) => Ok(res),
-            Err(err) => Err(err.to_string())
+        match self.flags.get(input) {
+            Some(callback) => {
+                match callback(argv[0], argv[1]) {
+                    Ok(s) => Ok(s),
+                    Err(err) => Err(err.to_string())
+                }
+            },
+            None => return Err("".to_string())
         }
     }
 }
