@@ -24,7 +24,7 @@ impl Form {
     }
     pub fn validate(&self) -> Result<(), FormError> {
         if self.name.is_empty() {
-            return Err(FormError::new("first_name", self.name.to_string(), "Username is empty"));
+            return Err(FormError::new("name", self.name.to_string(), "Username is empty"));
         }
         if self.password.len() < 8 {
             return Err(FormError::new("password", self.password.to_string() , "Password should be at least 8 characters long"));
