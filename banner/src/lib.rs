@@ -10,7 +10,7 @@ impl Flag {
     pub fn opt_flag(long_hand: &str, desc: &str) -> Self {
         Self {
             short_hand: format!("-{}", long_hand[0..1].to_string()),
-            long_hand: format!("-{}", long_hand),
+            long_hand: format!("--{}", long_hand),
             desc: desc.to_string()
         }
     }
