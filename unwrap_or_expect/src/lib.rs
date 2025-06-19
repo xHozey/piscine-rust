@@ -11,7 +11,7 @@ pub fn fetch_data(server: Result<&str, &str>, security_level: Security) -> Strin
         Security::Unknown => {
             match server {
                 Ok(url) => url.to_string(),
-                Err(_) => panic!("ERROR CRITICAL")
+                Err(_) => panic!("called `Result::unwrap()` on an `Err` value: \"ERROR CRITICAL\"")
             }
         },
         Security::Message => {
