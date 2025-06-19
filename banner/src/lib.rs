@@ -36,36 +36,19 @@ impl FlagsHandler {
                     Err(err) => Err(err.to_string())
                 }
             },
-            None => return Err("".to_string())
+            None => return Err("invalid float literal".to_string())
         }
     }
 }
 
 pub fn div(a: &str, b: &str) -> Result<String, ParseFloatError> {
-    match a.parse::<f64>() {
-        Ok(c) => {
-            match b.parse::<f64>() {
-                Ok(d) => {
-                    Ok((c/d).to_string())
-                },
-                Err(err) => Err(err)
-            }
-        },
-        Err(err) => Err(err)
-    }
-
+    let a = a.parse::<f64>()?;
+    let b = b.parse::<f64>()?;
+    Ok((a/b).to_string())
 }
 
 pub fn rem(a: &str, b: &str) -> Result<String, ParseFloatError> {
-     match a.parse::<f64>() {
-        Ok(c) => {
-            match b.parse::<f64>() {
-                Ok(d) => {
-                    Ok((c%d).to_string())
-                },
-                Err(err) => Err(err)
-            }
-        },
-        Err(err) => Err(err)
-    }
+    let a = a.parse::<f64>()?;
+    let b = b.parse::<f64>()?;
+    Ok((a%b).to_string())
 }
