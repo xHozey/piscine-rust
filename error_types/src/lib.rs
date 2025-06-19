@@ -14,8 +14,8 @@ impl FormError {
 
 #[derive(Debug, Eq, PartialEq)]
 pub struct Form {
-    name: String,
-    password: String
+    pub name: String,
+    pub password: String
 }
 
 impl Form {
