@@ -11,7 +11,7 @@ pub fn expected_variable(compare: &str, expected: &str) -> Option<String> {
 
     let res = 100 - (100 * cost as isize) / expected.len() as isize; 
     if res > 50 {
-        Some(format!("%{}", res))
+        Some(format!("{}%", res))
     } else {
         None
     }
