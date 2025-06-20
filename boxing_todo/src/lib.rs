@@ -27,9 +27,9 @@ impl TodoList {
         let mut tasks = Vec::new();
         for task in parsed["tasks"].members(){
             tasks.push(Task {
-                id: task["id"].to_string().parse::<u32>().unwrap(),
+                id: task["id"].to_string().parse::<u32>()?,
                 description: task["description"].to_string(),
-                level: task["level"].to_string().parse::<u32>().unwrap()
+                level: task["level"].to_string().parse::<u32>()?
             })
         }
         if tasks.len() == 0 {
