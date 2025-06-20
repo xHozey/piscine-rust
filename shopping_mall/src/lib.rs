@@ -1,6 +1,6 @@
 mod mall;
 use std::collections::HashMap;
-use mall::*;
+pub use mall::*;
 
 pub fn biggest_store(mall: &Mall) ->  (&String, &Store) {
     let mut res: Option<(&String, &Store)> = None;
