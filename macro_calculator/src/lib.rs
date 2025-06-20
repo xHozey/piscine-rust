@@ -21,9 +21,9 @@ pub fn calculate_macros(foods: &[Food]) -> json::JsonValue {
         fats += food.fats * food.nbr_of_portions
     }
     let mut res = JsonValue::new_object();
-    res["calcs"] = format!("{:.2}", calcs).into();
-    res["carbs"] = format!("{:.2}", carbs).into();
-    res["proteins"] = format!("{:.2}",proteins).into();
-    res["fats"] = format!("{:.2}",fats).into();
+    res["cals"] = format!("{:.2}", calcs).parse::<f64>().unwrap().into();
+    res["carbs"] = format!("{:.2}", carbs).parse::<f64>().unwrap().into();
+    res["proteins"] = format!("{:.2}",proteins).parse::<f64>().unwrap().into();
+    res["fats"] = format!("{:.2}",fats).parse::<f64>().unwrap().into();
     res
 }
