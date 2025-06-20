@@ -86,11 +86,19 @@ impl Mob {
     }
 
     pub fn steal(&mut self, target: &mut Mob, steal_worth: u64) {
+    let amount_to_steal = steal_worth.min(target.wealth);
+    target.wealth -= amount_to_steal;
+    self.wealth += amount_to_steal;
+}
 
-    }
-    pub fn conquer_city(&mut self, _mobs: &[&Mob],_city: String ) {
+    pub fn conquer_city(&mut self, mobs: &[&Mob], city: String) {
+    let city_taken = mobs.iter().any(|mob| mob.cities.contains(&city));
 
+    if !city_taken {
+        self.cities.insert(city);
     }
+}
+
 
     
 
