@@ -1,7 +1,6 @@
 mod mobs;
-use crate::mobs::Mob;
-use mobs::{member::*, boss::*};
-use mobs::*;
+pub use mobs::{member::*, boss::*};
+pub use mobs::*;
 
 impl Member {
     pub fn new(age: u32) -> Self {
@@ -52,13 +51,47 @@ impl Mob {
             }
         }
         if attacker_score <= defender_score {
-
+            let mut youngest_name = "".to_string();
+            let mut youngest_age = u32::MAX;
+            for (name, member) in self.members.clone() {
+                if member.age < youngest_age {
+                    youngest_age = member.age;
+                    youngest_name = name
+                }
+            }
+            self.members.remove(&youngest_name).unwrap();
+            for citie in &self.cities.clone() {
+                mob.cities.insert(citie.clone());
+                self.cities.remove(citie);
+            }
+            mob.wealth += self.wealth;
+            self.wealth = 0
+        } else {
+            let mut youngest_name = "".to_string();
+            let mut youngest_age = u32::MAX;
+            for (name, member) in mob.members.clone() {
+                if member.age < youngest_age {
+                    youngest_age = member.age;
+                    youngest_name = name
+                }
+            }
+            mob.members.remove(&youngest_name).unwrap();
+            for citie in &mob.cities.clone() {
+                self.cities.insert(citie.clone());
+                mob.cities.remove(citie);
+            }
+            self.wealth += mob.wealth;
+            mob.wealth = 0
         }
     }
+
     pub fn steal(&mut self, target: &mut Mob, steal_worth: u64) {
 
     }
-    fn conquer_city(&mut self, _mobs: &[&Mob],_city: String ) {
+    pub fn conquer_city(&mut self, _mobs: &[&Mob],_city: String ) {
 
     }
+
+    
+
 }
