@@ -1,5 +1,4 @@
 mod err;
-
 use std::error::Error;
 use std::fs;
 
@@ -20,7 +19,9 @@ pub struct TodoList {
 
 impl TodoList {
     pub fn get_todo(path: &str) -> Result<TodoList, Box<dyn Error>> {
-        let parsed = json::parse(&fs::read_to_string(path)?).map_err(|e| ReadErr {
+        let parsed = json::parse(&fs::read_to_string(path).map_err(|e| ReadErr {
+            child_err: Box::new(e)
+        })?).map_err(|e| ReadErr {
             child_err: Box::new(e)
         })?;
         let title: String = parsed["title"].to_string();
@@ -42,3 +43,4 @@ impl TodoList {
         return Ok(res)
     }
 }
+
