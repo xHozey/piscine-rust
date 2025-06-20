@@ -18,11 +18,13 @@ pub struct TodoList {
 
 impl TodoList {
     pub fn get_todo(path: &str) -> Result<TodoList, Box<dyn Error>> {
+        println!("debug 1");
         let parsed = json::parse(&fs::read_to_string(path).map_err(|e| ReadErr {
             child_err: Box::new(e)
         })?).map_err(|e| ReadErr {
             child_err: Box::new(e)
         })?;
+        println!("debug 2");
         let title: String = parsed["title"].to_string();
         let mut tasks = Vec::new();
         for task in parsed["tasks"].members(){

@@ -5,16 +5,6 @@ use boxing_todo::TodoList;
 fn main() {
     let files = [
         (
-            "todo.json",
-            r#"{
-                "title" : "TODO LIST FOR PISCINE RUST",
-                "tasks": [
-                    { "id": 0, "description": "do this", "level": 0 },
-                    { "id": 1, "description": "do that", "level": 5 }
-                ]
-            }"#,
-        ),
-        (
             "todo_empty.json",
             r#"{
                 "title" : "TODO LIST FOR PISCINE RUST",
