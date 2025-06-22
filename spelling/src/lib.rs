@@ -50,7 +50,7 @@ pub fn spell(n: u64) -> String {
             let unit = tens % 10;
             let ten = tens / 10;
             if unit > 0 && ten > 0 {
-                buffer.push_str(&format!(" {}-{}", map.get(&(ten*10)).unwrap(), map.get(&unit).unwrap()))
+                buffer.push_str(&format!("{}-{}", map.get(&(ten*10)).unwrap(), map.get(&unit).unwrap()))
             } else {
                 if ten > 0 {
                     buffer.push_str(map.get(&(ten*10)).unwrap())
