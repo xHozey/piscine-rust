@@ -42,7 +42,7 @@ pub fn spell(n: u64) -> String {
         let tens = digits % 100;
         let mut buffer = String::new();
         if hundred != 0 {
-            buffer.push_str(&format!("{} hundred", map.get(&hundred).unwrap()))
+            buffer.push_str(&format!("{} hundred ", map.get(&hundred).unwrap()))
         }
         if tens < 20 && tens != 0 {
             buffer.push_str(map.get(&tens).unwrap())
