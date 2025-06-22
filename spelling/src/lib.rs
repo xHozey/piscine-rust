@@ -60,7 +60,9 @@ pub fn spell(n: u64) -> String {
                 }
             }
         }
-        buffer.push_str(postfix[i]);
+        if digits > 0 {
+            buffer.push_str(postfix[i]);
+        }
         res.push(buffer.trim().to_string());
         res.push(" ".to_string());
         i += 1;
