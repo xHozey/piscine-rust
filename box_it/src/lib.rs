@@ -12,7 +12,7 @@ pub fn transform_and_save_on_heap(s: String) -> Box<Vec<u32>> {
             }
         }
         r.push(if multiply {
-            clean_nb.parse::<u32>().unwrap() * 1000
+            clean_nb.parse::<u32>().unwrap() * 100
         } else {
             clean_nb.parse::<u32>().unwrap()
         });
