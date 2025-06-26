@@ -18,7 +18,8 @@ impl GameSession {
         }
     }
     pub fn update_score(&mut self, user_name: String) {
-        if (self.nb_games == 5 && (self.p1.1 == 3 || self.p2.1 == 3)) || (self.nb_games == 11 && (self.p1.1 == 6 || self.p2.1 == 6)) {
+        let max_score = (self.nb_games as f32 / 2.).ceil() as u16;
+        if self.p1.1 == max_score || self.p2.1 == max_score {
             return
         }
         if self.p1.0 == user_name {
@@ -28,6 +29,6 @@ impl GameSession {
         }
     }
     pub fn delete(self) -> String {
-        "game deleted: id -> 0".to_string()
+        format!("game deleted: id -> {}", self.id)
     }
 }
