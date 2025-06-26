@@ -13,8 +13,10 @@ impl GameSession {
     pub fn read_winner(&self) -> (String, u16) {
         if self.p1.1 > self.p2.1 {
             self.p1.clone()
-        } else {
+        } else if self.p1.1 < self.p2.1 {
             self.p2.clone()
+        } else {
+            ("Same score! tied".to_string(), 2)
         }
     }
     pub fn update_score(&mut self, user_name: String) {
