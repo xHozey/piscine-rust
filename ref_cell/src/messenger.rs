@@ -18,14 +18,14 @@ impl <'a>Tracker<'a> {
     pub fn set_value(&self, val: &Rc<usize>)  {
         let perc = (Rc::strong_count(val) * 100) / self.max;
         if perc >= 100 {
-            self.logger.error("Error: you are over your quota!");
+            self.logger.error("you are over your quota!");
         } else if perc >= 70 && perc < 100 {
-            self.logger.warning(&format!("Warning: you have used up over {}% of your quota! Proceeds with precaution", perc));
+            self.logger.warning(&format!("you have used up over {}% of your quota! Proceeds with precaution", perc));
         }
     }
 
     pub fn peek(&self, val: &Rc<usize>) {
         let perc = (Rc::strong_count(val) * 100) / self.max;
-        self.logger.info(&format!("Info: you are using up to {}% of your quota", perc));
+        self.logger.info(&format!("you are using up to {}% of your quota", perc));
     }
 }
