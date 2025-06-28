@@ -1,6 +1,6 @@
 mod messenger;
 pub use messenger::*;
-use std::{cell::RefCell, collections::HashMap, rc::Rc};
+pub use std::{cell::RefCell, collections::HashMap, rc::Rc};
 pub struct Worker {
     pub track_value: Rc<u32>,
     pub mapped_messages: RefCell<HashMap<String, String>>,
