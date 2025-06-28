@@ -15,16 +15,18 @@ impl Worker {
 
 impl Logger for Worker {
     fn warning(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Warning".to_string(), msg.to_string());
-        self.all_messages.borrow_mut().push("Warning: ".to_string()+msg);
-
+        let msg_format: Vec<&str> = msg.split(":").collect();
+        self.mapped_messages.borrow_mut().insert(msg_format[0].to_string(), msg_format[1].trim().to_string());
+        self.all_messages.borrow_mut().push(msg.to_string());
     }
     fn info(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Info".to_string(), msg.to_string());
-        self.all_messages.borrow_mut().push("Info: ".to_string()+msg);
+        let msg_format: Vec<&str> = msg.split(":").collect();
+        self.mapped_messages.borrow_mut().insert(msg_format[0].to_string(), msg_format[1].trim().to_string());
+        self.all_messages.borrow_mut().push(msg.to_string());
     }
     fn error(&self, msg: &str) {
-        self.mapped_messages.borrow_mut().insert("Error".to_string(), msg.to_string());
-        self.all_messages.borrow_mut().push("Error: ".to_string()+msg);
+        let msg_format: Vec<&str> = msg.split(":").collect();
+        self.mapped_messages.borrow_mut().insert(msg_format[0].to_string(), msg_format[1].trim().to_string());
+        self.all_messages.borrow_mut().push(msg.to_string());
     }
 }
