@@ -23,12 +23,7 @@ impl AppendStr for StringValue {
     }
 
     fn remove_punctuation_marks(&mut self) -> Self{
-        let mut res = String::new();
-        for c in self.value.chars() {
-            if c != '.' && c != ',' && c != '?' && c != '!' {
-                res.push(c);
-            }
-        }
-        Self { value: res }
+        self.value.retain(|c| c != '.' && c != ',' && c != '?' && c != '!');
+        self.clone()
     }
 }
