@@ -2,13 +2,13 @@ mod messenger;
 pub use messenger::*;
 pub use std::{cell::RefCell, collections::HashMap, rc::Rc};
 pub struct Worker {
-    pub track_value: Rc<u32>,
+    pub track_value: Rc<usize>,
     pub mapped_messages: RefCell<HashMap<String, String>>,
     pub all_messages: RefCell<Vec<String>>
 }
 
 impl Worker {
-    pub fn new(track_value: u32) -> Self {
+    pub fn new(track_value: usize) -> Self {
         Self { track_value: Rc::new(track_value), mapped_messages: RefCell::new(HashMap::new()), all_messages: RefCell::new(vec![]) }
     }
 }
