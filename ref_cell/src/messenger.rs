@@ -5,17 +5,27 @@ pub trait Logger {
     fn error(&self, msg: &str);    
 }
 
-pub struct Tracker {
-    logger: Rc<dyn Logger>,
-    value: u32,
-    max: u32
+pub struct Tracker<'a> {
+    pub logger: &'a dyn Logger,
+    pub value: Rc<u32>,
+    pub max: usize
 }
 
-impl Tracker {
-    pub fn new(logger: Rc<dyn Logger>,max: u32 ) -> Self {
-        Self { logger, value: 0, max }
+impl <'a>Tracker<'a> {
+    pub fn new(logger: &'a dyn Logger,max: usize ) -> Self {
+        Self { logger, value: Rc::new(0), max }
     }
-    pub fn set_value() -> {
-        
+    pub fn set_value(&self, val: &Rc<u32>)  {
+        let perc = (Rc::strong_count(val) * 100) / self.max;
+        if perc >= 100 {
+            self.logger.error("Error: you are over your quota!");
+        } else if perc >= 70 && perc < 100 {
+            self.logger.warning(&format!("Warning: you have used up over {}% of your quota! Proceeds with precaution", perc));
+        }
+    }
+
+    pub fn peek(&self, val: &Rc<u32>) {
+        let perc = (Rc::strong_count(val) * 100) / self.max;
+        self.logger.info(&format!("Info: you are using up to {}% of your quota", perc));
     }
 }
