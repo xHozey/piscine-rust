@@ -45,6 +45,5 @@ impl std::fmt::Display for Player {
         writeln!(f, "{}", self.name)?;
         writeln!(f, "Strength: {}, Score: {}, Money: {}", self.strength, self.score, self.money)?;
         write!(f, "Weapons: {:?}", self.weapons)
-
     }
 }
