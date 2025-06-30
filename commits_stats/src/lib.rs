@@ -6,7 +6,7 @@ pub fn commits_per_week(data: &json::JsonValue) -> HashMap<String, u32> {
     for obj in data.members() {
         let date = obj["commit"]["author"]["date"].to_string().parse::<DateTime<Utc>>().unwrap();
         let iso_week = date.iso_week();
-        let week_str = format!("{}-W{}", iso_week.year(), iso_week.week());
+        let week_str = format!("{}-W{:02}", iso_week.year(), iso_week.week());
         *hashmap.entry(week_str).or_insert(0) += 1;
     }
     hashmap
