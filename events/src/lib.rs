@@ -53,13 +53,13 @@ impl<'a> Event<'a> {
                 let seconds = t.num_seconds() % 60;
                 Notification {
                     size: 30,
-                    color: (255, 2, 255),
+                    color: (255, 2, 25),
                     position: Position::Top,
                     content: format!(
                         "You have {}H:{}M:{}S left before the registration ends",
                         hours, minutes, seconds
                     )
-                    .truecolor(255, 2, 255)
+                    .truecolor(255, 2, 25)
                     .to_string(),
                 }
             }
