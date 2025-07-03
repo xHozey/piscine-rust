@@ -1,4 +1,3 @@
-#[derive(Debug)]
 
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct Person<'a> {
