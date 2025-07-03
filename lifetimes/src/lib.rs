@@ -1,4 +1,6 @@
 #[derive(Debug)]
+
+#[derive(Clone, PartialEq, Eq, Debug)]
 pub struct Person<'a> {
     pub name: &'a str,
     pub age: u8,
