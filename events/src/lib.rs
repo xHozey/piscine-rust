@@ -53,7 +53,7 @@ impl<'a> Event<'a> {
                 let seconds = t.num_seconds() % 60;
                 Notification {
                     size: 30,
-                    color: (255, 2, 25),
+                    color: (255, 2, 22),
                     position: Position::Top,
                     content: format!(
                         "You have {}H:{}M:{}S left before the registration ends",
