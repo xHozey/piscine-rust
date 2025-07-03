@@ -59,7 +59,7 @@ impl<'a> Event<'a> {
                         "You have {}H:{}M:{}S left before the registration ends",
                         hours, minutes, seconds
                     )
-                    .truecolor(255, 2, 25)
+                    .truecolor(255, 2, 22)
                     .to_string(),
                 }
             }
