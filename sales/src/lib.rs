@@ -11,10 +11,14 @@ impl Store {
 #[derive(Debug, Clone, PartialEq)]
 pub struct Cart {
     pub items: Vec<(String, f32)>,
+    pub receipt: Vec<f32>,
 }
 impl Cart {
     pub fn new() -> Cart {
-        Self { items: Vec::new() }
+        Self {
+            items: Vec::new(),
+            receipt: Vec::new(),
+        }
     }
     pub fn insert_item(&mut self, s: &Store, ele: String) {
         for el in s.products.clone() {
@@ -37,10 +41,12 @@ impl Cart {
                 chunk.iter().for_each(|(_, val)| {
                     let after_discount: f32 = val - (min * (val / total));
                     res.push((after_discount * 100.0).round() / 100.0);
+                    self.receipt.push((after_discount * 100.0).round() / 100.0);
                 });
             } else {
                 chunk.iter().for_each(|(_, val)| {
-                    res.push((val *100.).round() / 100.);
+                    res.push((val * 100.).round() / 100.);
+                    self.receipt.push((val * 100.0).round() / 100.0);
                 });
             }
         });
