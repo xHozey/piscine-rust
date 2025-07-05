@@ -12,7 +12,7 @@ impl<T> StepIterator<T> {
     }
 }
 
-impl<T: std::fmt::Debug + Eq + Add<Output = T> + Copy + std::cmp::PartialOrd + > std::iter::Iterator for StepIterator<T> {
+impl<T: std::fmt::Debug + Add<Output = T> + Copy + std::cmp::PartialOrd + > std::iter::Iterator for StepIterator<T> {
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
