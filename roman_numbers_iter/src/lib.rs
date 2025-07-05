@@ -71,17 +71,42 @@ impl From<u32> for RomanNumber {
 
 fn roman_to_digit(r: RomanNumber) -> u32 {
     let mut res = 0;
-    for el in r.0 {
-        match el {
-            RomanDigit::I => res += 1,
-            RomanDigit::V => res += 5,
-            RomanDigit::X => res += 10,
-            RomanDigit::L => res += 50,
-            RomanDigit::C => res += 100,
-            RomanDigit::D => res += 500,
-            RomanDigit::M => res += 100,
-            RomanDigit::Nulla => res += 0,
+    let mut i = 0;
+    while i < r.0.len() {
+        let current_value = match r.0[i] {
+            RomanDigit::I => 1,
+            RomanDigit::V => 5,
+            RomanDigit::X => 10,
+            RomanDigit::L => 50,
+            RomanDigit::C => 100,
+            RomanDigit::D => 500,
+            RomanDigit::M => 1000,
+            RomanDigit::Nulla => 0,
+        };
+
+
+        if i + 1 < r.0.len() {
+            let next_value = match r.0[i+1] {
+            RomanDigit::I => 1,
+            RomanDigit::V => 5,
+            RomanDigit::X => 10,
+            RomanDigit::L => 50,
+            RomanDigit::C => 100,
+            RomanDigit::D => 500,
+            RomanDigit::M => 1000,
+            RomanDigit::Nulla => 0,
+        };
+            if current_value >= next_value {
+                res += current_value
+            } else {
+                res += next_value - current_value;
+                i += 1
+
+            }
+        } else {
+            res += current_value
         }
+        i += 1
     }
     res
 }
@@ -90,7 +115,8 @@ impl Iterator for RomanNumber {
     type Item = Self;
     fn next(&mut self) -> Option<Self::Item> {
         let digit = roman_to_digit(self.clone());
-        let roman = Self::from(digit+1); 
+        println!("{}", digit);
+        let roman = Self::from(digit + 1);
         self.0 = roman.0.clone();
         Some(roman)
     }
