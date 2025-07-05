@@ -90,6 +90,8 @@ impl Iterator for RomanNumber {
     type Item = Self;
     fn next(&mut self) -> Option<Self::Item> {
         let digit = roman_to_digit(self.clone());
-        Some(Self::from(digit+1))
+        let roman = Self::from(digit+1); 
+        self.0 = roman.0.clone();
+        Some(roman)
     }
 }

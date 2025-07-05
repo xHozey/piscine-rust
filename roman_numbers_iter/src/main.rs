@@ -5,4 +5,10 @@ fn main() {
 
 	println!("{:?}", number);
 	println!("{:?}", number.next());
+	println!("{:?}", number.next());
+	println!("{:?}", number.next());
+	println!("{:?}", number.next());
+	println!("{:?}", number.next());
+
+
 }
