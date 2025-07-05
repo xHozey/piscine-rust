@@ -23,6 +23,6 @@ impl<'a> Numbers<'a> {
     pub fn highest_three(&self) -> Vec<u32> {
         let mut cl = self.numbers.to_vec();
         cl.sort();
-        cl[self.numbers.len()-3..].iter().rev().take(3).map(|v| *v).collect()
+        cl.iter().rev().take(3).map(|v| *v).collect()
     }
 }
