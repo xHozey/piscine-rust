@@ -27,25 +27,15 @@ impl Cart {
             }
         }
     }
+
     pub fn generate_receipt(&mut self) -> Vec<f32> {
         let mut res = Vec::new();
+        let total_dis = self.items.len() / 3;
         self.items.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap());
-        let chunks = self.items.chunks_exact(3);
-        chunks.clone().into_iter().for_each(|chunk| {
-            let (_, min) = *chunk
-                .into_iter()
-                .min_by(|a, b| a.1.partial_cmp(&b.1).unwrap())
-                .unwrap();
-            let mut total: f32 = 0.0;
-            chunk.iter().for_each(|(_, v)| total += v);
-            chunk.iter().for_each(|(_, val)| {
-                let after_discount: f32 = val - (min * (val / total));
-                res.push((after_discount * 100.0).round() / 100.0);
-                self.receipt.push((after_discount * 100.0).round() / 100.0);
-            });
-        });
-        let remainder = chunks.remainder();
-        remainder.iter().for_each(|(_, val)| res.push(*val));
+        let discount: f32 = self.items[0..total_dis].iter().map(|(_, v)| *v).sum();
+        let total: f32 = self.items.iter().map(|(_, val)| *val).sum();            
+        self.items.iter().for_each(|(_, val)| res.push(((val - (discount * (val / total))) * 100.).round() / 100.));
+        self.receipt = res.clone();
         res
     }
 }
