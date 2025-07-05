@@ -5,8 +5,8 @@ pub fn first_fifty_even_square() -> Vec<i32> {
         while res.len() < 50 {
             if acc % 2 == 0 {
                 res.push(acc);
-                acc += 1;
             }
+            acc += 1;
         }
         return res
     };
