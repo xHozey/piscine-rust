@@ -12,19 +12,15 @@ impl<T> StepIterator<T> {
     }
 }
 
-impl<T: Eq + Add<Output = T> + Copy> std::iter::Iterator for StepIterator<T> {
-    type Item = Self;
+impl<T: std::fmt::Debug + Eq + Add<Output = T> + Copy + std::cmp::PartialOrd + > std::iter::Iterator for StepIterator<T> {
+    type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.beg == self.step {
+        if self.beg > self.end {
             return None;
         }
-        let old = self.beg + self.step;
-        self.beg = old;
-        Some(Self {
-            beg: old,
-            end: self.end,
-            step: self.step,
-        })
+        let old = self.beg;
+        self.beg = self.beg + self.step;
+        Some(old)
     }
 }
